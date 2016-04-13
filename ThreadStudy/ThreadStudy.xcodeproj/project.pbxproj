@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		504B3A051CBDD11800F7CD5B /* Thread_Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B3A041CBDD11800F7CD5B /* Thread_Delay.m */; };
+		504B3A0E1CBDE17300F7CD5B /* Thread_BlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B3A0D1CBDE17300F7CD5B /* Thread_BlockOperation.m */; };
 		504EA2A51CBCDB730035194B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 504EA2A41CBCDB730035194B /* main.m */; };
 		504EA2A81CBCDB730035194B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 504EA2A71CBCDB730035194B /* AppDelegate.m */; };
 		504EA2AB1CBCDB730035194B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504EA2AA1CBCDB730035194B /* ViewController.m */; };
@@ -41,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		504B3A031CBDD11800F7CD5B /* Thread_Delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread_Delay.h; sourceTree = "<group>"; };
+		504B3A041CBDD11800F7CD5B /* Thread_Delay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread_Delay.m; sourceTree = "<group>"; };
+		504B3A0C1CBDE17300F7CD5B /* Thread_BlockOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thread_BlockOperation.h; sourceTree = "<group>"; };
+		504B3A0D1CBDE17300F7CD5B /* Thread_BlockOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thread_BlockOperation.m; sourceTree = "<group>"; };
 		504EA2A01CBCDB730035194B /* ThreadStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EA2A41CBCDB730035194B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		504EA2A61CBCDB730035194B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -135,6 +141,10 @@
 				504EA2E91CBCEF720035194B /* Thread_Safety.m */,
 				504EA2EB1CBCF61E0035194B /* Thread_GCD_Sync.h */,
 				504EA2EC1CBCF61E0035194B /* Thread_GCD_Sync.m */,
+				504B3A031CBDD11800F7CD5B /* Thread_Delay.h */,
+				504B3A041CBDD11800F7CD5B /* Thread_Delay.m */,
+				504B3A0C1CBDE17300F7CD5B /* Thread_BlockOperation.h */,
+				504B3A0D1CBDE17300F7CD5B /* Thread_BlockOperation.m */,
 				504EA2AC1CBCDB730035194B /* Main.storyboard */,
 				504EA2AF1CBCDB730035194B /* Assets.xcassets */,
 				504EA2B11CBCDB730035194B /* LaunchScreen.storyboard */,
@@ -308,7 +318,9 @@
 				504EA2A51CBCDB730035194B /* main.m in Sources */,
 				504EA2EA1CBCEF720035194B /* Thread_Safety.m in Sources */,
 				504EA2DE1CBCDE9C0035194B /* Thread_Group_Wait.m in Sources */,
+				504B3A0E1CBDE17300F7CD5B /* Thread_BlockOperation.m in Sources */,
 				504EA2DB1CBCDD580035194B /* Thread_Group.m in Sources */,
+				504B3A051CBDD11800F7CD5B /* Thread_Delay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
