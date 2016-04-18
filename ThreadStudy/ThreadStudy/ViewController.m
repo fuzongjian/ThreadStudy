@@ -14,6 +14,9 @@
 #import "Thread_Safety.h"
 #import "Thread_GCD_Sync.h"
 #import "Thread_BlockOperation.h"
+
+#import "Thread_GCD_Serial.h"
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic,strong) UIImage  * image1;
@@ -34,12 +37,78 @@
 //    [Thread_GCD_Sync thread_gcd_sync];
 //    [self thread_gcd_communication];
 //    [self thread_group_download_third];
+//    [Thread_GCD_Serial thread_gcd_serial];
+//    [self thread_gcd_first];
+//    [self thread_gcd_second];
+    [self thread_gcd_third];
     
-
+    
 //    [self thread_operation];
 //    [Thread_BlockOperation thread_blockOperation];
-    [self thread_operation_forth];
+//    [self thread_operation_forth];
 }
+/*-----------------------------执行的顺序问题------------------------------*/
+#pragma mark --- 执行的先后等级
+- (void)thread_gcd_first{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"DISPATCH_QUEUE_PRIORITY_DEFAULT--2");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSLog(@"DISPATCH_QUEUE_PRIORITY_HIGH--1");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSLog(@"DISPATCH_QUEUE_PRIORITY_LOW--3");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSLog(@"DISPATCH_QUEUE_PRIORITY_BACKGROUND--4");
+    });
+    
+}
+#pragma mark --- 串行子队列的优先等级
+/**  DISPATCH_QUEUE_SERIAL
+ *  生成一个串行队列，队列中的block按照先进先出（FIFO）的顺序执行，实际上为单线程执行。
+ */
+- (void)thread_gcd_second{
+    //创建串行队列 --- DISPATCH_QUEUE_SERIAL
+   dispatch_queue_t serialQueue = dispatch_queue_create("fuzongjian", DISPATCH_QUEUE_SERIAL);
+    //将队列放到全局队列中，
+    dispatch_set_target_queue(serialQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0));
+    dispatch_async(serialQueue, ^{
+        NSLog(@"fu--2");
+    });
+    dispatch_async(serialQueue, ^{
+        NSLog(@"zong--2");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"jian--1");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"jianjian--1");
+    });
+}
+#pragma mark --- 并行子队列的优先等级
+/**  DISPATCH_QUEUE_CONCURRENT
+ *  生成一个并发队列，队列中的block被分发到多个线程去执行。
+ */
+- (void)thread_gcd_third{
+    //创建串行队列 --- DISPATCH_QUEUE_CONCURRENT
+    dispatch_queue_t serialQueue = dispatch_queue_create("fuzongjian", DISPATCH_QUEUE_CONCURRENT);
+    //将队列放到全局队列中，
+    dispatch_set_target_queue(serialQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0));
+    dispatch_async(serialQueue, ^{
+        NSLog(@"fu--2");
+    });
+    dispatch_async(serialQueue, ^{
+        NSLog(@"zong--2");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"jian--1");
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"jianjian--1");
+    });
+}
+/*-----------------------------执行的顺序问题------------------------------*/
 #pragma mark --- NSBlockOperation
 
 #pragma mark --- NSOperationQueue
